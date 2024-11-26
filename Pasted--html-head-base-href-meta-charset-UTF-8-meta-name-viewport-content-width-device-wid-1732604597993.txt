@@ -1,0 +1,433 @@
+<html><head><base href="." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mindful Daily Journal</title>
+<style>
+:root {
+  --primary: #456c8c;  /* More soothing blue */
+  --secondary: #7fb2d6; /* Softer blue */
+  --accent: #e6a8a1;   /* Softer coral */
+  --light: #f5f7f9;    /* Lighter background */
+  --success: #8fc5a3;  /* Muted green */
+  --calm: #a5c8e1;     /* Peaceful blue */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f5f7f9, #e8f0f5);
+  min-height: 100vh;
+  color: #505b67;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.journal-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.journal-header h1 {
+  color: var(--primary);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.journal-header p {
+  color: #6b7c93;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.mindfulness-quote {
+  font-style: italic;
+  color: var(--calm);
+  margin: 1rem 0;
+  padding: 1rem;
+  border-left: 4px solid var(--calm);
+  background: rgba(165, 200, 225, 0.1);
+}
+
+.journal-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  animation: slideUp 0.8s ease-out;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.prompt-box {
+  background: rgba(127, 178, 214, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--secondary);
+}
+
+.prompt-text {
+  color: var(--primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e8f0f5;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fcfcfd;
+}
+
+input[type="date"]:focus,
+textarea:focus {
+  border-color: var(--secondary);
+  outline: none;
+  background-color: white;
+}
+
+textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.mood-selector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.mood-option {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 2px solid #e8f0f5;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  background-color: white;
+}
+
+.mood-option:hover {
+  background: var(--light);
+  transform: translateY(-2px);
+}
+
+.mood-option.selected {
+  background: var(--secondary);
+  color: white;
+  border-color: var(--secondary);
+}
+
+button {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background: #6ca1c7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(127, 178, 214, 0.2);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.entry-saved {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--success);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  display: none;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.history-panel {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  width: 380px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+  padding: 2rem;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.history-panel.active {
+  right: 0;
+}
+
+.view-history-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+
+.close-history {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: auto;
+}
+
+.history-entry {
+  border-bottom: 1px solid #eee;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.history-entry h3 {
+  color: var(--primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.history-date {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.history-mood {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: var(--light);
+  border-radius: 15px;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.history-content {
+  color: #666;
+  margin: 0.5rem 0;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="journal-header">
+    <h1>Mindful Daily Journal</h1>
+    <p>Take a moment to reflect, breathe, and capture your story</p>
+    <div class="mindfulness-quote">
+      "Life is not measured by the number of breaths we take, but by the moments that take our breath away."
+    </div>
+  </div>
+
+  <form class="journal-form" id="journalForm">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" id="date" required>
+    </div>
+
+    <div class="form-group">
+      <label>How are you feeling right now?</label>
+      <div class="mood-selector">
+        <div class="mood-option" data-mood="peaceful">😌 Peaceful</div>
+        <div class="mood-option" data-mood="happy">😊 Happy</div>
+        <div class="mood-option" data-mood="grateful">🙏 Grateful</div>
+        <div class="mood-option" data-mood="anxious">😰 Anxious</div>
+        <div class="mood-option" data-mood="tired">😴 Tired</div>
+        <div class="mood-option" data-mood="motivated">💪 Motivated</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="prompt-box">
+        <div class="prompt-text">Today's Mindful Prompt:</div>
+        <p>What moment today made you pause and take notice? What made it special?</p>
+      </div>
+      <textarea id="entry" placeholder="Write about your moment..." required></textarea>
+    </div>
+
+    <button type="submit">Save Today's Story</button>
+  </form>
+</div>
+
+<div class="entry-saved" id="savedNotification">
+  Your story has been saved. Thank you for taking time for yourself today! 🌟
+</div>
+
+<div class="view-history-btn" id="viewHistoryBtn">
+  📖
+</div>
+
+<div class="history-panel" id="historyPanel">
+  <button class="close-history" id="closeHistory">×</button>
+  <h2>Your Journey So Far</h2>
+  <div id="historyContainer">
+    <!-- Entries will be populated here -->
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Set default date to today
+  document.getElementById('date').valueAsDate = new Date();
+
+  // Mood selector functionality
+  const moodOptions = document.querySelectorAll('.mood-option');
+  let selectedMood = null;
+
+  moodOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      moodOptions.forEach(opt => opt.classList.remove('selected'));
+      option.classList.add('selected');
+      selectedMood = option.dataset.mood;
+    });
+  });
+
+  // Form submission
+  const journalForm = document.getElementById('journalForm');
+  const savedNotification = document.getElementById('savedNotification');
+
+  journalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    if (!selectedMood) {
+      alert('Please select how you\'re feeling today.');
+      return;
+    }
+
+    const entryData = {
+      date: document.getElementById('date').value,
+      mood: selectedMood,
+      entry: document.getElementById('entry').value,
+      timestamp: new Date().toISOString()
+    };
+
+    // Save to localStorage
+    const entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+    entries.push(entryData);
+    localStorage.setItem('journalEntries', JSON.stringify(entries));
+
+    // Show success notification
+    savedNotification.style.display = 'block';
+    setTimeout(() => {
+      savedNotification.style.display = 'none';
+    }, 3000);
+
+    // Reset form
+    journalForm.reset();
+    document.getElementById('date').valueAsDate = new Date();
+    moodOptions.forEach(opt => opt.classList.remove('selected'));
+    selectedMood = null;
+    displayEntries();
+  });
+
+  // History Panel Functionality
+  const viewHistoryBtn = document.getElementById('viewHistoryBtn');
+  const historyPanel = document.getElementById('historyPanel');
+  const closeHistory = document.getElementById('closeHistory');
+  const historyContainer = document.getElementById('historyContainer');
+
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  function displayEntries() {
+    const entries = JSON.parse(localStorage.getItem('journalEntries') || '[]');
+    historyContainer.innerHTML = '';
+
+    entries.sort((a, b) => new Date(b.date) - new Date(a.date))
+          .forEach(entry => {
+      const entryElement = document.createElement('div');
+      entryElement.className = 'history-entry';
+      
+      entryElement.innerHTML = `
+        <div class="history-date">${formatDate(entry.date)}</div>
+        <div class="history-mood">${entry.mood}</div>
+        <div class="history-content">${entry.entry}</div>
+      `;
+      
+      historyContainer.appendChild(entryElement);
+    });
+  }
+
+  viewHistoryBtn.addEventListener('click', () => {
+    historyPanel.classList.add('active');
+    displayEntries();
+  });
+
+  closeHistory.addEventListener('click', () => {
+    historyPanel.classList.remove('active');
+  });
+
+  // Initial display of entries
+  displayEntries();
+});
+</script>
+</body></html>

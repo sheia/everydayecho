@@ -2,26 +2,49 @@
 
 {% block content %}
 <div class="journal-container">
-    <div class="prompt-section">
-        <h2 class="h4 mb-3">Today's Reflection Prompt</h2>
-        <p id="prompt-display" class="mb-3"></p>
-        <button id="new-prompt-btn" class="btn btn-secondary">
-            <i data-feather="refresh-cw"></i> Generate New Prompt
-        </button>
+    <div class="journal-header">
+        <h1>Daily Reflection</h1>
+        <p>Take a moment to pause, reflect, and capture your story</p>
+        <div class="mindfulness-quote">
+            "The little things? The little moments? They aren't little." - Jon Kabat-Zinn
+        </div>
     </div>
 
-    <form id="journal-form" method="POST" action="{{ url_for('save_entry') }}">
+    <form id="journal-form" class="journal-form" method="POST" action="{{ url_for('save_entry') }}">
         <input type="hidden" id="prompt-input" name="prompt">
-        <div class="mb-3">
-            <label for="journal-content" class="form-label">Your Reflection</label>
+        <input type="hidden" id="mood-input" name="mood">
+        
+        <div class="form-group">
+            <label>How are you feeling right now?</label>
+            <div class="mood-selector">
+                <div class="mood-option" data-mood="peaceful">😌 Peaceful</div>
+                <div class="mood-option" data-mood="happy">😊 Happy</div>
+                <div class="mood-option" data-mood="grateful">🙏 Grateful</div>
+                <div class="mood-option" data-mood="anxious">😰 Anxious</div>
+                <div class="mood-option" data-mood="tired">😴 Tired</div>
+                <div class="mood-option" data-mood="motivated">💪 Motivated</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="prompt-box">
+                <div class="prompt-text">Today's Mindful Prompt:</div>
+                <p id="prompt-display"></p>
+            </div>
+            <button type="button" id="new-prompt-btn" class="btn btn-secondary mb-3">
+                <i data-feather="refresh-cw"></i> Generate New Prompt
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label for="journal-content">Your Reflection</label>
             <textarea class="form-control" id="journal-content" name="content" 
                       placeholder="Write your thoughts here..." required></textarea>
         </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button type="submit" class="btn btn-primary">
-                <i data-feather="save"></i> Save Entry
-            </button>
-        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i data-feather="save"></i> Save Today's Story
+        </button>
     </form>
 </div>
 {% endblock %}

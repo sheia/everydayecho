@@ -2,21 +2,35 @@
 
 {% block content %}
 <div class="journal-container">
-    <h1 class="h3 mb-4">Past Reflections</h1>
+    <div class="journal-header">
+        <h1>Your Journey So Far</h1>
+        <p>A collection of your meaningful moments and reflections</p>
+    </div>
     
     {% if entries %}
         {% for entry in entries %}
-        <div class="entry-card card mb-4">
-            <div class="card-body">
-                <div class="entry-date mb-2">
-                    {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p') }}
-                </div>
-                <div class="prompt mb-3">
-                    <strong>Prompt:</strong> {{ entry.prompt }}
-                </div>
-                <div class="content">
-                    {{ entry.content | nl2br }}
-                </div>
+        <div class="history-entry">
+            <div class="history-date">
+                {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p') }}
+            </div>
+            {% if entry.mood %}
+            <div class="history-mood">
+                {% if entry.mood == "peaceful" %}😌
+                {% elif entry.mood == "happy" %}😊
+                {% elif entry.mood == "grateful" %}🙏
+                {% elif entry.mood == "anxious" %}😰
+                {% elif entry.mood == "tired" %}😴
+                {% elif entry.mood == "motivated" %}💪
+                {% endif %}
+                {{ entry.mood|title }}
+            </div>
+            {% endif %}
+            <div class="prompt-box">
+                <div class="prompt-text">Prompt:</div>
+                <p>{{ entry.prompt }}</p>
+            </div>
+            <div class="history-content">
+                {{ entry.content | nl2br }}
             </div>
         </div>
         {% endfor %}
