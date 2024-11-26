@@ -24,6 +24,22 @@
                     <i data-feather="refresh-cw" id="new-prompt-btn" class="refresh-icon" style="cursor: pointer; width: 18px; height: 18px;"></i>
                 </div>
             </div>
+            <button type="button" class="btn btn-link mood-toggle" id="toggleMood">
+                <i data-feather="heart"></i> Track Mood
+            </button>
+        </div>
+
+        <div class="form-group mood-section" style="display: none;">
+            <label>How are you feeling today?</label>
+            <div class="mood-selector">
+                <div class="mood-option" data-mood="peaceful">😌 Peaceful</div>
+                <div class="mood-option" data-mood="happy">😊 Happy</div>
+                <div class="mood-option" data-mood="grateful">🙏 Grateful</div>
+                <div class="mood-option" data-mood="anxious">😰 Anxious</div>
+                <div class="mood-option" data-mood="tired">😴 Tired</div>
+                <div class="mood-option" data-mood="motivated">💪 Motivated</div>
+            </div>
+            <input type="hidden" name="mood" id="mood-input">
         </div>
 
         <div class="form-group">

@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const journalForm = document.getElementById('journal-form');
     const promptInput = document.getElementById('prompt-input');
     const savedNotification = document.getElementById('savedNotification');
+    const toggleMoodBtn = document.getElementById('toggleMood');
+    const moodSection = document.querySelector('.mood-section');
+    const moodOptions = document.querySelectorAll('.mood-option');
+    const moodInput = document.getElementById('mood-input');
 
     async function generatePrompt() {
         const aiStatus = document.getElementById('ai-status');
@@ -41,6 +45,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Generate initial prompt on page load
     generatePrompt();
+
+    // Mood toggle functionality
+    toggleMoodBtn.addEventListener('click', function() {
+        moodSection.style.display = moodSection.style.display === 'none' ? 'block' : 'none';
+        toggleMoodBtn.classList.toggle('active');
+    });
+
+    // Mood selection
+    moodOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            moodOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            moodInput.value = option.dataset.mood;
+        });
+    });
 
     // Form validation and submission
     journalForm.addEventListener('submit', function(e) {
