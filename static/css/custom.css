@@ -261,3 +261,13 @@ textarea {
 .nav-link:hover {
   color: var(--secondary) !important;
 }
+
+.refresh-icon {
+    color: var(--secondary);
+    transition: transform 0.3s ease;
+}
+
+.refresh-icon:hover {
+    color: var(--primary);
+    transform: rotate(180deg);
+}

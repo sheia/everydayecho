@@ -32,11 +32,11 @@
                     Today's Mindful Prompt:
                     <span id="ai-status" class="badge bg-secondary">Loading...</span>
                 </div>
-                <p id="prompt-display"></p>
+                <div class="d-flex align-items-center">
+                    <p id="prompt-display" class="mb-0 me-2"></p>
+                    <i data-feather="refresh-cw" id="new-prompt-btn" class="refresh-icon" style="cursor: pointer; width: 18px; height: 18px;"></i>
+                </div>
             </div>
-            <button type="button" id="new-prompt-btn" class="btn btn-primary mb-3">
-                <i data-feather="refresh-cw"></i> Generate New Prompt
-            </button>
         </div>
 
         <div class="form-group">
