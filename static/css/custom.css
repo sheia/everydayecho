@@ -1,11 +1,30 @@
 :root {
-    --journal-bg: var(--bs-gray-900);
-    --journal-text: var(--bs-gray-200);
+    --journal-primary: #E6F3F8;    /* Soft blue */
+    --journal-secondary: #E8EDE6;  /* Gentle sage */
+    --journal-neutral: #F5F5F5;    /* Warm neutral */
+    --journal-text: #2C3E50;       /* Deep blue-gray for text */
+    --journal-accent: #A8C7BB;     /* Muted sage for accents */
+    --journal-highlight: #D7E4EA;  /* Light blue highlight */
 }
 
 body {
-    background-color: var(--journal-bg);
+    background-color: var(--journal-primary);
     color: var(--journal-text);
+    transition: background-color 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--journal-secondary) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-brand, .nav-link {
+    color: var(--journal-text) !important;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: var(--journal-accent) !important;
 }
 
 .journal-container {
@@ -14,10 +33,17 @@ body {
 }
 
 .prompt-section {
-    background-color: var(--bs-gray-800);
-    border-radius: 8px;
+    background-color: var(--journal-secondary);
+    border-radius: 12px;
     padding: 2rem;
     margin-bottom: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prompt-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 
 #prompt-display {
@@ -25,22 +51,74 @@ body {
     font-weight: 300;
     line-height: 1.6;
     margin-bottom: 1rem;
+    color: var(--journal-text);
 }
 
 #journal-content {
     min-height: 300px;
-    background-color: var(--bs-gray-800);
-    border: 1px solid var(--bs-gray-700);
+    background-color: var(--journal-neutral);
+    border: 1px solid var(--journal-accent);
     color: var(--journal-text);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#journal-content:focus {
+    border-color: var(--journal-accent);
+    box-shadow: 0 0 0 0.2rem rgba(168, 199, 187, 0.25);
+    outline: none;
 }
 
 .entry-card {
-    background-color: var(--bs-gray-800);
-    border: 1px solid var(--bs-gray-700);
+    background-color: var(--journal-neutral);
+    border: 1px solid var(--journal-accent);
     margin-bottom: 1rem;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.entry-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .entry-date {
-    color: var(--bs-gray-500);
+    color: var(--journal-text);
+    opacity: 0.7;
     font-size: 0.9rem;
+}
+
+.btn {
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--journal-accent);
+    border-color: var(--journal-accent);
+    color: var(--journal-text);
+}
+
+.btn-primary:hover {
+    background-color: var(--journal-highlight);
+    border-color: var(--journal-highlight);
+    color: var(--journal-text);
+}
+
+.btn-secondary {
+    background-color: var(--journal-highlight);
+    border-color: var(--journal-highlight);
+    color: var(--journal-text);
+}
+
+.btn-secondary:hover {
+    background-color: var(--journal-accent);
+    border-color: var(--journal-accent);
+    color: var(--journal-text);
+}
+
+.alert {
+    background-color: var(--journal-neutral);
+    border-color: var(--journal-accent);
+    color: var(--journal-text);
 }
