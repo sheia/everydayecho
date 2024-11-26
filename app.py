@@ -34,11 +34,9 @@ def save_entry():
             flash('Please provide both content and prompt', 'error')
             return redirect(url_for('index'))
         
-        mood = request.form.get('mood')
         entry = models.JournalEntry(
             content=content,
             prompt=prompt,
-            mood=mood,
             created_at=datetime.utcnow()
         )
         db.session.add(entry)

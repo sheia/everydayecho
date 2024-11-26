@@ -4,20 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const journalForm = document.getElementById('journal-form');
     const promptInput = document.getElementById('prompt-input');
     const savedNotification = document.getElementById('savedNotification');
-    
-    // Mood selector functionality
-    const moodOptions = document.querySelectorAll('.mood-option');
-    const moodInput = document.getElementById('mood-input');
-    let selectedMood = null;
-
-    moodOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            moodOptions.forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-            selectedMood = option.dataset.mood;
-            moodInput.value = selectedMood;
-        });
-    });
 
     async function generatePrompt() {
         const aiStatus = document.getElementById('ai-status');
@@ -63,12 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!content.trim()) {
             e.preventDefault();
             alert('Please write something in your journal before saving.');
-            return;
-        }
-
-        if (!selectedMood) {
-            e.preventDefault();
-            alert('Please select how you\'re feeling today.');
             return;
         }
     });

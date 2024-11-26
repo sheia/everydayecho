@@ -12,19 +12,6 @@
 
     <form id="journal-form" class="journal-form" method="POST" action="{{ url_for('save_entry') }}">
         <input type="hidden" id="prompt-input" name="prompt">
-        <input type="hidden" id="mood-input" name="mood">
-        
-        <div class="form-group">
-            <label>How are you feeling right now?</label>
-            <div class="mood-selector">
-                <div class="mood-option" data-mood="peaceful">😌 Peaceful</div>
-                <div class="mood-option" data-mood="happy">😊 Happy</div>
-                <div class="mood-option" data-mood="grateful">🙏 Grateful</div>
-                <div class="mood-option" data-mood="anxious">😰 Anxious</div>
-                <div class="mood-option" data-mood="tired">😴 Tired</div>
-                <div class="mood-option" data-mood="motivated">💪 Motivated</div>
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="prompt-box">

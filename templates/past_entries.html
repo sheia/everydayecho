@@ -13,18 +13,6 @@
             <div class="history-date">
                 {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p') }}
             </div>
-            {% if entry.mood %}
-            <div class="history-mood">
-                {% if entry.mood == "peaceful" %}😌
-                {% elif entry.mood == "happy" %}😊
-                {% elif entry.mood == "grateful" %}🙏
-                {% elif entry.mood == "anxious" %}😰
-                {% elif entry.mood == "tired" %}😴
-                {% elif entry.mood == "motivated" %}💪
-                {% endif %}
-                {{ entry.mood|title }}
-            </div>
-            {% endif %}
             <div class="prompt-box">
                 <div class="prompt-text">Prompt:</div>
                 <p>{{ entry.prompt }}</p>
