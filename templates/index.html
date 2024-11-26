@@ -32,6 +32,23 @@
         </div>
 
         <div class="form-group">
+            <button type="button" class="btn btn-outline-secondary mb-3" id="toggleMood">
+                <i data-feather="heart"></i> Toggle Mood Tracking
+            </button>
+            <div id="moodSection" style="display: none;">
+                <label>How are you feeling right now?</label>
+                <div class="mood-selector">
+                    <div class="mood-option" data-mood="peaceful">😌 Peaceful</div>
+                    <div class="mood-option" data-mood="happy">😊 Happy</div>
+                    <div class="mood-option" data-mood="grateful">🙏 Grateful</div>
+                    <div class="mood-option" data-mood="anxious">😰 Anxious</div>
+                    <div class="mood-option" data-mood="tired">😴 Tired</div>
+                    <div class="mood-option" data-mood="motivated">💪 Motivated</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <label for="journal-content">Your Reflection</label>
             <textarea class="form-control" id="journal-content" name="content" 
                       placeholder="Write your thoughts here..." required></textarea>

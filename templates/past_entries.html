@@ -18,7 +18,7 @@
                 <p>{{ entry.prompt }}</p>
             </div>
             <div class="history-content">
-                {{ entry.content | nl2br }}
+                {{ entry.content | nl2br | safe }}
             </div>
         </div>
         {% endfor %}

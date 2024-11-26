@@ -48,6 +48,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
+    // Mood tracking toggle functionality
+    const toggleMoodBtn = document.getElementById('toggleMood');
+    const moodSection = document.getElementById('moodSection');
+    const moodOptions = document.querySelectorAll('.mood-option');
+    let selectedMood = null;
+
+    if (toggleMoodBtn) {
+        toggleMoodBtn.addEventListener('click', () => {
+            moodSection.style.display = moodSection.style.display === 'none' ? 'block' : 'none';
+        });
+    }
+
+    moodOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            moodOptions.forEach(opt => opt.classList.remove('selected'));
+            option.classList.add('selected');
+            selectedMood = option.dataset.mood;
+        });
+    });
+
     // Form validation and submission
     journalForm.addEventListener('submit', function(e) {
         const content = document.getElementById('journal-content').value;

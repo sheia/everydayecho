@@ -82,6 +82,24 @@ label {
   font-weight: 500;
 }
 
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #e8f0f5;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #fcfcfd;
+}
+
+input[type="date"]:focus,
+textarea:focus {
+  border-color: var(--secondary);
+  outline: none;
+  background-color: white;
+}
+
 textarea {
   min-height: 200px;
   resize: vertical;
@@ -173,4 +191,3 @@ button:hover {
   color: var(--primary);
   transform: rotate(180deg);
 }
-

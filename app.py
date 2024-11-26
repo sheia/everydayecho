@@ -13,6 +13,11 @@ app = Flask(__name__)
 migrate = Migrate(app, db)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY") or "a secret key"
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+@app.template_filter('nl2br')
+def nl2br(value):
+    if not value:
+        return ''
+    return value.replace('\n', '<br>\n')
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
     "pool_pre_ping": True,
