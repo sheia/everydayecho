@@ -115,14 +115,27 @@ def save_entry():
         content = request.form.get('content')
         prompt = request.form.get('prompt')
         entry_date = request.form.get('date')
+        
         if not content or not prompt:
             flash('Please provide both content and prompt', 'error')
             return redirect(url_for('index'))
         
+        # Get the current time in local timezone
+        local_time = datetime.now().replace(microsecond=0)
+        
+        if entry_date:
+            # Combine the entry date with current local time
+            entry_datetime = datetime.strptime(
+                f"{entry_date} {local_time.strftime('%H:%M:%S')}", 
+                '%Y-%m-%d %H:%M:%S'
+            )
+        else:
+            entry_datetime = local_time
+        
         entry = models.JournalEntry(
             content=content,
             prompt=prompt,
-            created_at=datetime.strptime(entry_date + ' ' + datetime.now().strftime('%H:%M:%S'), '%Y-%m-%d %H:%M:%S') if entry_date else datetime.now(),
+            created_at=entry_datetime,
             user_id=current_user.id
         )
         db.session.add(entry)
