@@ -53,21 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // History panel functionality
-    const viewHistoryBtn = document.getElementById('viewHistoryBtn');
-    const historyPanel = document.getElementById('historyPanel');
-    const closeHistory = document.getElementById('closeHistory');
-
-    if (viewHistoryBtn && historyPanel && closeHistory) {
-        viewHistoryBtn.addEventListener('click', () => {
-            historyPanel.classList.add('active');
-        });
-
-        closeHistory.addEventListener('click', () => {
-            historyPanel.classList.remove('active');
-        });
-    }
-
     // Handle flash messages animation
     const flashMessages = document.querySelectorAll('.alert');
     flashMessages.forEach(message => {
