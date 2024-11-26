@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set default date to today
     document.getElementById('entry-date').valueAsDate = new Date();
-    
 
     async function generatePrompt() {
         const aiStatus = document.getElementById('ai-status');
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Error generating prompt:', error);
             aiStatus.textContent = 'Error';
             aiStatus.className = 'badge bg-danger';
-            promptDisplay.textContent = "What's meaningful about today?";
+            promptDisplay.textContent = "What made this moment meaningful to you?";
             promptInput.value = promptDisplay.textContent;
         }
     }
@@ -46,37 +45,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Generate initial prompt on page load
     generatePrompt();
 
-    
-
-    // Mood tracking toggle functionality
-    const toggleMoodBtn = document.getElementById('toggleMood');
-    const moodSection = document.getElementById('moodSection');
-    const moodOptions = document.querySelectorAll('.mood-option');
-    let selectedMood = null;
-
-    if (toggleMoodBtn) {
-        toggleMoodBtn.addEventListener('click', () => {
-            moodSection.style.display = moodSection.style.display === 'none' ? 'block' : 'none';
-        });
-    }
-
-    moodOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            moodOptions.forEach(opt => opt.classList.remove('selected'));
-            option.classList.add('selected');
-            selectedMood = option.dataset.mood;
-        });
-    });
-
     // Form validation and submission
     journalForm.addEventListener('submit', function(e) {
         const content = document.getElementById('journal-content').value;
+        const prompt = promptDisplay.textContent;
         
         if (!content.trim()) {
             e.preventDefault();
             alert('Please write something in your journal before saving.');
             return;
         }
+
+        // Set the prompt input value before submission
+        promptInput.value = prompt;
     });
 
     // Handle flash messages animation
