@@ -122,7 +122,7 @@ def save_entry():
         entry = models.JournalEntry(
             content=content,
             prompt=prompt,
-            created_at=datetime.strptime(entry_date, '%Y-%m-%d') if entry_date else datetime.utcnow(),
+            created_at=datetime.strptime(entry_date + ' ' + datetime.now().strftime('%H:%M:%S'), '%Y-%m-%d %H:%M:%S') if entry_date else datetime.now(),
             user_id=current_user.id
         )
         db.session.add(entry)
