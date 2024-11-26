@@ -32,6 +32,7 @@ def save_entry():
     try:
         content = request.form.get('content')
         prompt = request.form.get('prompt')
+        entry_date = request.form.get('date')
         if not content or not prompt:
             flash('Please provide both content and prompt', 'error')
             return redirect(url_for('index'))
@@ -39,7 +40,7 @@ def save_entry():
         entry = models.JournalEntry(
             content=content,
             prompt=prompt,
-            created_at=datetime.utcnow()
+            created_at=datetime.strptime(entry_date, '%Y-%m-%d') if entry_date else datetime.utcnow()
         )
         db.session.add(entry)
         db.session.commit()

@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const promptInput = document.getElementById('prompt-input');
     const savedNotification = document.getElementById('savedNotification');
     
+    // Set default date to today
+    document.getElementById('entry-date').valueAsDate = new Date();
+    
 
     async function generatePrompt() {
         const aiStatus = document.getElementById('ai-status');
