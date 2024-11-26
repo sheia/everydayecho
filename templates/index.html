@@ -28,7 +28,10 @@
 
         <div class="form-group">
             <div class="prompt-box">
-                <div class="prompt-text">Today's Mindful Prompt:</div>
+                <div class="prompt-text d-flex justify-content-between align-items-center">
+                    Today's Mindful Prompt:
+                    <span id="ai-status" class="badge bg-secondary">Loading...</span>
+                </div>
                 <p id="prompt-display"></p>
             </div>
             <button type="button" id="new-prompt-btn" class="btn btn-primary mb-3">

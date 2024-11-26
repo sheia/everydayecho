@@ -20,13 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     async function generatePrompt() {
+        const aiStatus = document.getElementById('ai-status');
         try {
             // First try Chrome AI
+            aiStatus.textContent = 'Checking AI...';
+            aiStatus.className = 'badge bg-warning';
+            
             const aiPrompt = await generateAIPrompt();
             if (aiPrompt) {
                 currentPrompt = aiPrompt;
+                aiStatus.textContent = 'Chrome AI';
+                aiStatus.className = 'badge bg-success';
             } else {
                 // Fallback to server prompts
+                aiStatus.textContent = 'Server Prompts';
+                aiStatus.className = 'badge bg-secondary';
                 const response = await fetch('/generate_prompt');
                 const data = await response.json();
                 const randomIndex = Math.floor(Math.random() * data.prompts.length);
@@ -36,6 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
             promptInput.value = currentPrompt;
         } catch (error) {
             console.error('Error generating prompt:', error);
+            aiStatus.textContent = 'Error';
+            aiStatus.className = 'badge bg-danger';
             promptDisplay.textContent = "What's meaningful about today?";
             promptInput.value = promptDisplay.textContent;
         }
