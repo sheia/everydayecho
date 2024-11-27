@@ -96,12 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize and show toasts if they exist
     const toastElList = document.querySelectorAll('.toast');
-    const toastList = [...toastElList].map(toastEl => {
-        const toast = new bootstrap.Toast(toastEl, {
-            autohide: true,
-            delay: 3000
+    if (toastElList.length > 0) {
+        toastElList.forEach(toastEl => {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
         });
-        toast.show(); // Show the toast immediately if it exists
-        return toast;
-    });
+    }
 });
