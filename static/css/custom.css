@@ -41,12 +41,11 @@ body {
 }
 
 .mindfulness-quote {
-  font-style: italic;
-  color: var(--calm);
-  margin: 1rem 0;
+  background: rgba(127, 178, 214, 0.1);
   padding: 1rem;
-  border-left: 4px solid var(--calm);
-  background: rgba(165, 200, 225, 0.1);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--secondary);
 }
 
 .journal-form {
