@@ -46,20 +46,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // Generate initial prompt on page load
     // Generate dynamic quote
     async function generateQuote() {
+        const quoteDisplay = document.getElementById('quote-display');
+        const quoteStatus = document.createElement('span');
+        quoteStatus.id = 'quote-ai-status';
+        quoteStatus.className = 'badge bg-secondary ms-2';
+        
         try {
+            quoteStatus.textContent = 'Generating...';
+            quoteDisplay.parentElement.appendChild(quoteStatus);
+            
             const aiQuote = await generateAIQuote();
             if (aiQuote) {
                 quoteDisplay.textContent = `"${aiQuote}"`;
+                quoteStatus.textContent = 'Chrome AI';
+                quoteStatus.className = 'badge bg-success ms-2';
             } else {
-                // Fallback to server quotes
                 const response = await fetch('/generate_quote');
                 const data = await response.json();
                 const randomIndex = Math.floor(Math.random() * data.quotes.length);
                 quoteDisplay.textContent = `"${data.quotes[randomIndex]}"`;
+                quoteStatus.textContent = 'Default Quote';
             }
         } catch (error) {
             console.error('Error generating quote:', error);
             quoteDisplay.textContent = '"Life is a collection of moments worth remembering."';
+            quoteStatus.textContent = 'Error';
+            quoteStatus.className = 'badge bg-danger ms-2';
         }
     }
 

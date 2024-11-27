@@ -3,7 +3,15 @@ async function generateAIPrompt() {
 }
 
 async function generateAIQuote() {
-    return await generateAIContent("Generate an inspiring quote about mindfulness, self-reflection, or the value of recording daily experiences. Keep it concise and impactful. Only return the quote, no attribution.");
+    try {
+        const result = await generateAIContent(
+            "Write one quote that is around the importance of little things and enjoying everyday life to the fullest. Only give the quote, nothing more."
+        );
+        return result ? result.trim() : null;
+    } catch (error) {
+        console.error('Quote generation error:', error);
+        return null;
+    }
 }
 
 async function generateAIContent(prompt) {
