@@ -50,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const quoteStatus = document.getElementById('quote-ai-status');
         
         try {
+            // Show "Generating..." status while waiting
             quoteStatus.textContent = 'Generating...';
-            quoteStatus.className = 'badge bg-secondary';
+            quoteStatus.className = 'badge bg-warning';
             
             const aiQuote = await generateAIQuote();
             if (aiQuote) {
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const randomIndex = Math.floor(Math.random() * data.quotes.length);
                 quoteDisplay.textContent = `"${data.quotes[randomIndex]}"`;
                 quoteStatus.textContent = 'Default Quote';
+                quoteStatus.className = 'badge bg-secondary';
             }
         } catch (error) {
             console.error('Error generating quote:', error);
