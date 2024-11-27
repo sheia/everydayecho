@@ -146,10 +146,10 @@ def save_entry():
         )
         db.session.add(entry)
         db.session.commit()
-        flash('Journal entry saved successfully!', 'success')
+        flash('Your story has been saved successfully! 🌟', 'success')
         return redirect(url_for('index'))
     except Exception as e:
-        print(f"Error saving entry: {str(e)}")  # Add logging for debugging
+        print(f"Error saving entry: {str(e)}")
         flash('Error saving entry. Please try again.', 'error')
         return redirect(url_for('index'))
 
