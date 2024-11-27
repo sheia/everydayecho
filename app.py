@@ -120,19 +120,18 @@ def save_entry():
             flash('Please provide both content and prompt', 'error')
             return redirect(url_for('index'))
         
-        # Get current time in UTC
-        utc_tz = pytz.timezone('UTC')
-        current_time = datetime.now(utc_tz).replace(microsecond=0)
+        # Use local time
+        local_time = datetime.now().replace(microsecond=0)
         
         if entry_date:
-            # Parse the entry date and combine with current UTC time
+            # Combine the entry date with current local time
             date_obj = datetime.strptime(entry_date, '%Y-%m-%d')
-            entry_datetime = utc_tz.localize(datetime.combine(
+            entry_datetime = datetime.combine(
                 date_obj.date(),
-                current_time.time()
-            ))
+                local_time.time()
+            )
         else:
-            entry_datetime = current_time
+            entry_datetime = local_time
         
         entry = models.JournalEntry(
             content=content,
@@ -145,6 +144,7 @@ def save_entry():
         flash('Journal entry saved successfully!', 'success')
         return redirect(url_for('index'))
     except Exception as e:
+        print(f"Error saving entry: {str(e)}")  # Add logging for debugging
         flash('Error saving entry. Please try again.', 'error')
         return redirect(url_for('index'))
 
