@@ -106,7 +106,7 @@ textarea {
 }
 
 button {
-  background: var(--primary);
+  background: #7fb2d6;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -118,9 +118,9 @@ button {
 }
 
 button:hover {
-  background: #385a75;
+  background: #6ca1c7;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(69, 108, 140, 0.2);
+  box-shadow: 0 4px 12px rgba(127, 178, 214, 0.2);
 }
 
 @keyframes fadeIn {
