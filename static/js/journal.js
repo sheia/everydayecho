@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const promptDisplay = document.getElementById('prompt-display');
+    const quoteDisplay = document.getElementById('quote-display');
     const newPromptBtn = document.getElementById('new-prompt-btn');
     const journalForm = document.getElementById('journal-form');
     const promptInput = document.getElementById('prompt-input');
@@ -43,6 +44,27 @@ document.addEventListener('DOMContentLoaded', function() {
     newPromptBtn.addEventListener('click', generatePrompt);
 
     // Generate initial prompt on page load
+    // Generate dynamic quote
+    async function generateQuote() {
+        try {
+            const aiQuote = await generateAIQuote();
+            if (aiQuote) {
+                quoteDisplay.textContent = `"${aiQuote}"`;
+            } else {
+                // Fallback to server quotes
+                const response = await fetch('/generate_quote');
+                const data = await response.json();
+                const randomIndex = Math.floor(Math.random() * data.quotes.length);
+                quoteDisplay.textContent = `"${data.quotes[randomIndex]}"`;
+            }
+        } catch (error) {
+            console.error('Error generating quote:', error);
+            quoteDisplay.textContent = '"Life is a collection of moments worth remembering."';
+        }
+    }
+
+    // Generate initial quote on page load
+    generateQuote();
     generatePrompt();
 
     // Form validation and submission

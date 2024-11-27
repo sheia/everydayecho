@@ -167,3 +167,14 @@ def generate_prompt():
         "What's something you're looking forward to?"
     ]
     return jsonify({"prompts": fallback_prompts})
+@app.route('/generate_quote')
+def generate_quote():
+    # Fallback quotes in case AI is unavailable
+    fallback_quotes = [
+        "Life is not measured by the number of breaths we take, but by the moments that take our breath away.",
+        "The little things? The little moments? They aren't little.",
+        "Every moment is a fresh beginning.",
+        "Life is a collection of moments worth remembering.",
+        "Today is an opportunity to grow and learn."
+    ]
+    return jsonify({"quotes": fallback_quotes})
