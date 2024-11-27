@@ -11,7 +11,7 @@
         {% for entry in entries %}
         <div class="history-entry">
             <div class="history-date">
-                {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p %Z') }}
+                {{ entry.created_at.strftime('%B %d, %Y at %I:%M %p') }} (UTC)
             </div>
             <div class="prompt-box">
                 <div class="prompt-text">Prompt:</div>
