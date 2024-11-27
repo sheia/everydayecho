@@ -105,8 +105,8 @@ textarea {
   resize: vertical;
 }
 
-button {
-  background: #7fb2d6;
+button, .btn-primary {
+  background: #7fb2d6 !important;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -114,13 +114,22 @@ button {
   font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+button:hover, .btn-primary:hover {
+  background: #6ca1c7 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(127, 178, 214, 0.2);
+}
+
+/* Reset width only for form buttons */
+form button {
   width: 100%;
 }
 
-button:hover {
-  background: #6ca1c7;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(127, 178, 214, 0.2);
+/* Reset padding for close buttons */
+button.close-history {
+  padding: 0.5rem;
 }
 
 @keyframes fadeIn {
