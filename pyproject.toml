@@ -11,4 +11,5 @@ dependencies = [
     "flask-migrate>=4.0.7",
     "flask-login>=0.6.3",
     "werkzeug>=3.0.1",
+    "pytz>=2024.2",
 ]

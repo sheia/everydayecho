@@ -1,5 +1,6 @@
 from app import db
 from datetime import datetime
+import pytz
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -23,7 +24,7 @@ class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     prompt = db.Column(db.String(500), nullable=False)
-    created_at = db.Column(db.DateTime, default=datetime.now)
+    created_at = db.Column(db.DateTime(timezone=True), default=lambda: datetime.now(pytz.timezone('UTC')))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
