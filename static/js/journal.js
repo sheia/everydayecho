@@ -94,22 +94,14 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
-    // Initialize all toasts
-    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
-    var toastList = toastElList.map(function(toastEl) {
-        return new bootstrap.Toast(toastEl, {
+    // Initialize and show toasts if they exist
+    const toastElList = document.querySelectorAll('.toast');
+    const toastList = [...toastElList].map(toastEl => {
+        const toast = new bootstrap.Toast(toastEl, {
             autohide: true,
             delay: 3000
-        })
-    });
-
-    // Handle flash messages animation
-    const flashMessages = document.querySelectorAll('.alert');
-    flashMessages.forEach(message => {
-        message.addEventListener('animationend', () => {
-            setTimeout(() => {
-                message.remove();
-            }, 3000);
         });
+        toast.show(); // Show the toast immediately if it exists
+        return toast;
     });
 });
