@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const quoteStatus = document.getElementById('quote-ai-status');
         
         try {
+            quoteDisplay.textContent = ''; // Clear the quote while waiting
             quoteStatus.textContent = 'Checking AI...';
             quoteStatus.className = 'badge bg-warning';
             
@@ -68,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         } catch (error) {
             console.error('Error generating quote:', error);
-            quoteDisplay.textContent = 'Life is a collection of moments worth remembering.';
+            quoteDisplay.textContent = ''; // Keep empty on error
             quoteStatus.textContent = 'Error';
             quoteStatus.className = 'badge bg-danger';
         }
