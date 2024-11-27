@@ -50,26 +50,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const quoteStatus = document.getElementById('quote-ai-status');
         
         try {
-            // Show "Checking AI..." status while waiting
             quoteStatus.textContent = 'Checking AI...';
             quoteStatus.className = 'badge bg-warning';
             
             const aiQuote = await generateAIQuote();
             if (aiQuote) {
-                quoteDisplay.textContent = `"${aiQuote}"`;
+                quoteDisplay.textContent = aiQuote;
                 quoteStatus.textContent = 'Chrome AI';
                 quoteStatus.className = 'badge bg-success';
             } else {
                 const response = await fetch('/generate_quote');
                 const data = await response.json();
                 const randomIndex = Math.floor(Math.random() * data.quotes.length);
-                quoteDisplay.textContent = `"${data.quotes[randomIndex]}"`;
+                quoteDisplay.textContent = data.quotes[randomIndex];
                 quoteStatus.textContent = 'Default Quote';
                 quoteStatus.className = 'badge bg-secondary';
             }
         } catch (error) {
             console.error('Error generating quote:', error);
-            quoteDisplay.textContent = '"Life is a collection of moments worth remembering."';
+            quoteDisplay.textContent = 'Life is a collection of moments worth remembering.';
             quoteStatus.textContent = 'Error';
             quoteStatus.className = 'badge bg-danger';
         }
