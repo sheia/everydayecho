@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const quoteStatus = document.getElementById('quote-ai-status');
         
         try {
-            // Show "Checking AI" status while waiting
-            quoteStatus.textContent = 'Checking AI';
+            // Show "Checking AI..." status while waiting
+            quoteStatus.textContent = 'Checking AI...';
             quoteStatus.className = 'badge bg-warning';
             
             const aiQuote = await generateAIQuote();
