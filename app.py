@@ -83,7 +83,12 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         confirm_password = request.form.get('confirm_password')
+        terms_accepted = request.form.get('terms')
         
+        if not terms_accepted:
+            flash('You must accept the Terms of Use to register', 'error')
+            return redirect(url_for('register'))
+            
         if password != confirm_password:
             flash('Passwords do not match', 'danger')
             return redirect(url_for('register'))
@@ -155,6 +160,10 @@ def past_entries():
         models.JournalEntry.created_at.desc()
     ).all()
     return render_template('past_entries.html', entries=entries)
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
 
 @app.route('/generate_prompt')
 def generate_prompt():
