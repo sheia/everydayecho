@@ -92,6 +92,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Set the prompt input value before submission
         promptInput.value = prompt;
+
+        // Initialize and show Bootstrap toast after form submission
+        const toastElement = document.getElementById('savedNotification');
+        const toast = new bootstrap.Toast(toastElement, {
+            delay: 3000,
+            autohide: true
+        });
+        toast.show();
     });
 
     // Handle flash messages animation
