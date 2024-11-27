@@ -79,6 +79,18 @@ document.addEventListener('DOMContentLoaded', function() {
     generateQuote();
     generatePrompt();
 
+    // Initialize toast functionality
+    function initializeToasts() {
+        const toastElList = document.querySelectorAll('.toast');
+        toastElList.forEach(toastEl => {
+            const toast = new bootstrap.Toast(toastEl, {
+                autohide: true,
+                delay: 3000
+            });
+            toast.show();
+        });
+    }
+
     // Form validation and submission
     journalForm.addEventListener('submit', function(e) {
         const content = document.getElementById('journal-content').value;
@@ -94,12 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
-    // Initialize and show toasts if they exist
-    const toastElList = document.querySelectorAll('.toast');
-    if (toastElList.length > 0) {
-        toastElList.forEach(toastEl => {
-            const toast = new bootstrap.Toast(toastEl);
-            toast.show();
-        });
-    }
+    // Initialize toasts when page loads
+    initializeToasts();
 });
+
+// Call initializeToasts after page loads
+document.addEventListener('DOMContentLoaded', initializeToasts);
