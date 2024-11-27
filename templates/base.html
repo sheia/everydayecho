@@ -40,21 +40,6 @@
         </div>
     </nav>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="container-fluid px-0">
-                <div class="w-100 position-fixed top-0 start-0" style="z-index: 1051;">
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }} alert-dismissible fade show m-0 rounded-0 text-center">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endif %}
-    {% endwith %}
-
     <div class="container mt-4">
         {% block content %}{% endblock %}
     </div>
