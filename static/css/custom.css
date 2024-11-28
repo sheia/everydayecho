@@ -201,6 +201,44 @@ button.close-history {
 }
 
 .navbar-brand img {
-  max-height: 80px; /* Adjust the height as needed */
+  max-height: 240px; /* Adjust the height as needed */
   width: auto;      /* Maintain aspect ratio */
+}
+
+/* Toast notifications styling */
+.toast-container {
+  padding: 1rem;
+  z-index: 1050;
+}
+
+.toast {
+  min-width: 250px;
+  backdrop-filter: blur(10px);
+  border: none;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 1 !important;
+}
+
+.toast .toast-body {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+}
+
+.toast .btn-close {
+  padding: 0.75rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.toast .btn-close:hover {
+  opacity: 1;
+}
+
+.toast .feather {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.5;
+  margin-right: 0.5rem;
 }
