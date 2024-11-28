@@ -199,3 +199,8 @@ button.close-history {
   color: var(--primary);
   transform: rotate(180deg);
 }
+
+.navbar-brand img {
+  max-height: 80px; /* Adjust the height as needed */
+  width: auto;      /* Maintain aspect ratio */
+}
