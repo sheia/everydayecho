@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     newPromptBtn.addEventListener('click', generatePrompt);
 
-    // Generate initial prompt on page load
     // Generate dynamic quote
     async function generateQuote() {
         const quoteDisplay = document.getElementById('quote-display');
@@ -75,10 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Generate initial quote on page load
-    generateQuote();
-    generatePrompt();
-
     // Initialize toast functionality
     function initializeToasts() {
         const toastElList = document.querySelectorAll('.toast');
@@ -106,9 +101,10 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
+    // Generate initial quote and prompt on page load
+    generateQuote();
+    generatePrompt();
+    
     // Initialize toasts when page loads
     initializeToasts();
 });
-
-// Call initializeToasts after page loads
-document.addEventListener('DOMContentLoaded', initializeToasts);
