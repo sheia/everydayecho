@@ -50,7 +50,7 @@
             {% if messages %}
                 {% for category, message in messages %}
                     {% set bg_class = 'text-bg-success' if category == 'success' else 'text-bg-danger' if category == 'danger' or category == 'error' else 'text-bg-' ~ category %}
-                    <div class="toast {{ bg_class }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+                    <div class="toast show {{ bg_class }} border-0" role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
                                 {{ message }}
