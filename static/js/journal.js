@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const newPromptBtn = document.getElementById('new-prompt-btn');
     const journalForm = document.getElementById('journal-form');
     const promptInput = document.getElementById('prompt-input');
-    const savedNotification = document.getElementById('savedNotification');
     
     // Set default date to today
     document.getElementById('entry-date').valueAsDate = new Date();
@@ -74,18 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Initialize toast functionality
-    function initializeToasts() {
-        const toastElList = document.querySelectorAll('.toast');
-        toastElList.forEach(toastEl => {
-            const toast = new bootstrap.Toast(toastEl, {
-                autohide: true,
-                delay: 3000
-            });
-            toast.show();
-        });
-    }
-
     // Form validation and submission
     journalForm.addEventListener('submit', function(e) {
         const content = document.getElementById('journal-content').value;
@@ -101,10 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
-    // Generate initial quote and prompt on page load
+    // Initialize toasts if they exist
+    const toastElList = document.querySelectorAll('.toast');
+    if (toastElList.length > 0) {
+        toastElList.forEach(toastEl => {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        });
+    }
+
+    // Generate initial quote and prompt
     generateQuote();
     generatePrompt();
-    
-    // Initialize toasts when page loads
-    initializeToasts();
 });
