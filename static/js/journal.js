@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Form validation and submission
+    // Form submission
     journalForm.addEventListener('submit', function(e) {
         const content = document.getElementById('journal-content').value;
         const prompt = promptDisplay.textContent;
@@ -88,11 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
-    // Initialize toasts if they exist
+    // Initialize toasts
     const toastElList = document.querySelectorAll('.toast');
     if (toastElList.length > 0) {
         toastElList.forEach(toastEl => {
-            const toast = new bootstrap.Toast(toastEl);
+            const toast = new bootstrap.Toast(toastEl, {
+                autohide: true,
+                delay: 3000
+            });
             toast.show();
         });
     }
