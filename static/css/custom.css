@@ -272,7 +272,7 @@ button.close-history {
 }
 
 .navbar-brand img {
-  max-height: 300px;
+  max-height: 400px;
   width: auto;
   transition: transform 0.3s ease;
 }
