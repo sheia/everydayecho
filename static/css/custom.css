@@ -29,14 +29,16 @@ body {
 }
 
 .toast {
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: none;
   margin-bottom: 1rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   opacity: 0;
-  animation: slideIn 0.3s ease forwards;
+  animation: toastSlideIn 0.5s ease forwards;
   pointer-events: auto;
+  border-radius: 12px;
 }
 
 .toast.show {
@@ -44,29 +46,32 @@ body {
 }
 
 .toast .toast-body {
-  padding: 1rem;
+  padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.5;
+  font-weight: 500;
 }
 
 .toast .feather {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   stroke-width: 2.5;
-  margin-right: 0.75rem;
+  margin-right: 1rem;
   flex-shrink: 0;
 }
 
 .toast.text-bg-success {
   background: var(--success) !important;
   color: white;
+  box-shadow: 0 8px 32px rgba(143, 197, 163, 0.25);
 }
 
 .toast.text-bg-danger {
   background: #dc3545 !important;
   color: white;
+  box-shadow: 0 8px 32px rgba(220, 53, 69, 0.25);
 }
 
 @keyframes slideIn {
@@ -223,12 +228,14 @@ button.close-history {
   animation: slideIn 0.3s ease-out;
 }
 
-@keyframes slideIn {
+@keyframes toastSlideIn {
   from {
-    transform: translateX(100%);
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
   }
   to {
-    transform: translateX(0);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
