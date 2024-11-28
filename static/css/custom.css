@@ -200,40 +200,33 @@ button.close-history {
   transform: rotate(180deg);
 }
 
-.navbar-brand img {
-  max-height: 240px; /* Adjust the height as needed */
-  width: auto;      /* Maintain aspect ratio */
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Ensures proper alignment */
+    height: auto;        /* Remove any fixed height */
 }
 
 /* Toast notifications styling */
 .toast-container {
-  padding: 1rem;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
   z-index: 1050;
+  max-width: 350px;
 }
 
 .toast {
-  min-width: 250px;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: none;
   margin-bottom: 0.75rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  opacity: 1 !important;
 }
 
 .toast .toast-body {
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
-}
-
-.toast .btn-close {
-  padding: 0.75rem;
-  margin: 0;
-  opacity: 0.8;
-}
-
-.toast .btn-close:hover {
-  opacity: 1;
 }
 
 .toast .feather {
@@ -241,4 +234,17 @@ button.close-history {
   height: 18px;
   stroke-width: 2.5;
   margin-right: 0.5rem;
+}
+
+/* Logo styling */
+.navbar-brand img {
+  max-height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand img {
+    max-height: 40px;
+  }
 }
