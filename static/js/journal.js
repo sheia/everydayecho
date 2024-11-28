@@ -88,19 +88,16 @@ document.addEventListener('DOMContentLoaded', function() {
         promptInput.value = prompt;
     });
 
-    // Initialize toasts
-    const toastElList = document.querySelectorAll('.toast');
-    if (toastElList.length > 0) {
-        toastElList.forEach(toastEl => {
-            const toast = new bootstrap.Toast(toastEl, {
-                autohide: true,
-                delay: 3000
-            });
-            toast.show();
-        });
-    }
-
     // Generate initial quote and prompt
     generateQuote();
     generatePrompt();
+    
+    // Initialize Bootstrap toasts
+    document.addEventListener('DOMContentLoaded', () => {
+        const toastElList = document.querySelectorAll('.toast');
+        toastElList.forEach(toastEl => {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        });
+    });
 });
