@@ -55,7 +55,7 @@
             {% if messages %}
                 {% for category, message in messages %}
                     {% set bg_class = 'text-bg-success' if category == 'success' else 'text-bg-danger' if category == 'danger' or category == 'error' else 'text-bg-' ~ category %}
-                    <div class="toast fade show {{ bg_class }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000" data-bs-autohide="true">
+                    <div class="toast fade show {{ bg_class }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="4000" data-bs-autohide="true">
                         <div class="d-flex align-items-center">
                             <div class="toast-body">
                                 {% if category == 'success' %}
