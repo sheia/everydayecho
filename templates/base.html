@@ -45,11 +45,12 @@
     </div>
 
     <!-- Toast container for notifications -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050;">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
-                    <div class="toast align-items-center text-bg-{{ category }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+                    {% set bg_class = 'text-bg-success' if category == 'success' else 'text-bg-danger' if category == 'danger' or category == 'error' else 'text-bg-' ~ category %}
+                    <div class="toast {{ bg_class }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
                         <div class="d-flex">
                             <div class="toast-body">
                                 {{ message }}
